@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate",
+  "name": "expensify",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -19,6 +19,7 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-modal": "^2.2.2",
+    "react-router-dom": "^4.2.2",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.18.2",
     "validator": "^10.2.0",

@@ -1,6 +1,45 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import './styles/styles.sass'
 import 'normalize.css/normalize.css'
 
-ReactDOM.render(<h1>boilerplate</h1>, document.getElementById('app'))
+const ExpenseDashboardPage = () => (
+  <div>
+    This is from my dashboard component
+  </div>
+)
+
+const AddExpensePage = () => (
+  <div>
+    This is from my addexpense component
+  </div>
+)
+
+const EditExpensePage = () => (
+  <div>
+    This is from my editexpense component
+  </div>
+)
+
+const HelpPage = () => (
+  <div>
+    This is from my helppage component
+  </div>
+)
+
+// BrowserRouter expects just a single element inside (in this case div)
+// When Route path is matched, the component is rendered
+// 'exact' states that the route path has to be exactly that
+const routes = (
+  <BrowserRouter>
+    <div>
+      <Route path="/" component={ExpenseDashboardPage} exact={true}></Route>
+      <Route path="/create" component={AddExpensePage} ></Route>
+      <Route path="/edit" component={EditExpensePage} ></Route>
+      <Route path="/help" component={HelpPage} ></Route>
+    </div>
+  </BrowserRouter>
+)
+
+ReactDOM.render(routes, document.getElementById('app'))
