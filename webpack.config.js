@@ -4,7 +4,7 @@ const path = require('path')
 // module.exports is a way to expose something to other files.
 module.exports = {
   entry: './src/app.jsx',
-  // entry: './src/playground/redux_expensify.jsx',
+  // entry: './src/playground/hoc.jsx',
   output: {
     // ABSOLUTE PATH were the webpack file is output.
     path: path.join(__dirname, 'public'),
