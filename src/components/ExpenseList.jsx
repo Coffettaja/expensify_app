@@ -1,11 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux' // connects the component to the redux store
+import ExpenseListItem from './ExpenseListItem.jsx'
+import selectExpenses from '../selectors/expenses.jsx'
 
 const ExpenseList = (props) => (
   <div>
     <h1>Expense List</h1>
-    {props.expenses.length}
-    {props.filters.text}
+    <ul>
+      {props.expenses.map((expense) => (
+        <ExpenseListItem
+          key={expense.id} 
+          {...expense}
+        ></ExpenseListItem>
+      ))}
+    </ul>
   </div>
 )
 
@@ -13,8 +21,7 @@ const ExpenseList = (props) => (
 // This automatically reruns when the redux state changes.
 const mapStateToProps = (state) => {
   return {
-    expenses: state.expenses,
-    filters: state.filters,
+    expenses: selectExpenses(state.expenses, state.filters)
   }
 }
 
