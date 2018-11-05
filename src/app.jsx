@@ -12,20 +12,9 @@ import 'normalize.css/normalize.css'
 const store = configureStore()
 
 store.dispatch(addExpense({description: 'Wata bill', amount: 40, createdAt: 1}))
-store.dispatch(addExpense({description: 'Gas bill', amount: 20, createdAt: 2}))
+store.dispatch(addExpense({description: 'Gas bill', amount: 20, createdAt: 22}))
 store.dispatch(addExpense({description: 'Rent', amount: 200, createdAt: 14}))
-console.log(store.getState())
-store.dispatch(setTextFilter('wa'))
-store.dispatch(sortByAmount())
-store.dispatch(sortByDate())
-
-setTimeout(() => {
-  store.dispatch(setTextFilter('bill'))
-}, 3000)
-
-const visibleExpenses = getVisibleExpenses(store.getState().expenses, store.getState().filters)
-
-console.log(visibleExpenses)
+store.dispatch(addExpense({description: 'LaterRent', amount: 200, createdAt: 15}))
 
 // Provider provides the redux state to all the components inside.
 const jsx = (

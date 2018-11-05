@@ -6,8 +6,8 @@ const ExpenseListItem = ({ description, amount, createdAt, id, dispatch }) => (
   <div>
     <li> {description}
       <ul>
-        <li>{amount}</li>
-        <li>{createdAt}</li>
+        <li>Amount: {amount}</li>
+        <li>Created at: {createdAt}</li>
       </ul>
     </li> 
     <button onClick={(e) => {
