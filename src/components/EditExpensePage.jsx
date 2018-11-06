@@ -1,10 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm.jsx'
 import { editExpense, removeExpense } from '../actions/expenses.jsx'
 import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
-const EditExpensePage = (props) => (
+const EditExpensePage = (props) => {
+  if (!props.expense) {
+    return (
+      <div>
+        <p>
+          Looks like this expense does not exist :(
+        </p>
+        <Link to="/">Back to dashboard</Link>
+      </div>
+    )
+  }
+  return (
   <div>
     <ExpenseForm 
       onSubmit={(expense) => {
@@ -19,7 +31,7 @@ const EditExpensePage = (props) => (
       props.history.push('/')
     }}>Remove!</button>
   </div>
-)
+)}
 
 const mapStateToProps = (state, props) => {
   return {
