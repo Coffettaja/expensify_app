@@ -90,7 +90,7 @@ export default class ExpenseForm extends React.Component {
             onFocusChange={this.onFocusChange}
             numberOfMonths={1} // How many months are displayed at a time
             isOutsideRange={() => false } // Makes all the dates available, past and future
-            displayFormat={() => "DD.MM.YYYY"}
+            displayFormat={() => "DD/MM/YYYY"}
           ></SingleDatePicker>
           <textarea 
             placeholder="Add a note for your expense (optional)."
