@@ -1,20 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { removeExpense } from '../actions/expenses.jsx'
+import { Link } from 'react-router-dom'
 
-const ExpenseListItem = ({ description, amount, createdAt, id, dispatch }) => (
+const ExpenseListItem = ({ description, amount, createdAt, id }) => (
   <div>
-    <li> {description}
+    <li><Link to={`/edit/${id}`}>{description}</Link>
       <ul>
         <li>Amount: {amount}</li>
         <li>Created at: {createdAt}</li>
       </ul>
     </li> 
-    <button onClick={(e) => {
-      dispatch(removeExpense(id)) 
-    }}>Remove!</button>
   </div>
 )
 
-// Connecting without param still gives the component access to dispatch() in props.
-export default connect()(ExpenseListItem)
+export default ExpenseListItem
