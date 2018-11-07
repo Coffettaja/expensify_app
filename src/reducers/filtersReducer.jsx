@@ -9,6 +9,7 @@ const filtersReducerDefaultState = {
 }
 
 // Reducers take current state and some action, and should return a new state
+// They are pure functions, they should never alter the previous state.
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
   switch (action.type) {
     case 'SET_TEXT_FILTER':
