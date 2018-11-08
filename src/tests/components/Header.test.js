@@ -1,9 +1,9 @@
 import React from 'react'
-import ReactShallowRenderer from 'react-test-renderer/shallow'
+import { shallow } from 'enzyme'
 import Header from '../../components/Header.jsx'
 
 test('should render header correctly', () => {
-  const renderer = new ReactShallowRenderer()
-  renderer.render(<Header></Header>)
-  expect(renderer.getRenderOutput()).toMatchSnapshot() 
+  const wrapper = shallow(<Header></Header>)
+  // toJSON library used to make sure the snapshot does not include all the unnceserray info from enzyme. it automatically runs because jest.config.json serializer property.
+  expect(wrapper).toMatchSnapshot()
 })
