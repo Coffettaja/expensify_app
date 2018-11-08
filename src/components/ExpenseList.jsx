@@ -3,17 +3,24 @@ import { connect } from 'react-redux' // connects the component to the redux sto
 import ExpenseListItem from './ExpenseListItem.jsx'
 import selectExpenses from '../selectors/expenses.jsx'
 
-const ExpenseList = (props) => (
+// exported for testing purposes
+export const ExpenseList = (props) => (
   <div>
-    <h1>Expense List</h1>
-    <ul>
-      {props.expenses.map((expense) => (
-        <ExpenseListItem
-          key={expense.id} 
-          {...expense}
-        ></ExpenseListItem>
-      ))}
-    </ul>
+    {
+      props.expenses.length === 0 ? (
+        <p>No expenses</p>
+      ) : (
+        <ul>
+          {props.expenses.map((expense) => (
+            <ExpenseListItem
+              key={expense.id}
+              {...expense}
+            ></ExpenseListItem>
+          ))}
+        </ul>
+      )
+    }
+    
   </div>
 )
 
