@@ -1,5 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import moment from 'moment'
 import ExpenseForm from '../../components/ExpenseForm.jsx'
 import expenses from '../fixtures/expenses'
 
@@ -61,4 +62,40 @@ test('should not set amount if invalid input', () => {
     target: { value }
   })
   expect(wrapper.state('amount')).toBe('')
+})
+
+test('should call onSubmit prop for valid form submission', () => {
+  // Spies can be used to mock functions by passing them as props to Components, and then it they can be used to check if they were called, and with what arguments
+  const onSubmitSpy = jest.fn()
+  const expense = expenses[0]
+  const wrapper = shallow(<ExpenseForm expense={expenses[0]} onSubmit={onSubmitSpy}></ExpenseForm>)
+  wrapper.find('form').simulate('submit', {
+    preventDefault: () => { }
+  })
+  expect(wrapper.state('error')).toBe('')
+  expect(onSubmitSpy).toHaveBeenLastCalledWith({
+    description: expense.description,
+    amount: expense.amount,
+    note: expense.note,
+    createdAt: expense.createdAt
+  })
+})
+
+test('should set new date on date change', () => {
+  const now = moment()
+  const wrapper = shallow(<ExpenseForm></ExpenseForm>)
+  // can also find React Components
+  // it is possible to access the properties of an element with either .prop(KEY), or get them all with props()
+  // To test onDateChange, it has to be retrieved from the component, and it requires a moment instance as a parameter
+  wrapper.find('SingleDatePicker').prop('onDateChange')(now)
+  expect(wrapper.state('createdAt')).toEqual(now)
+})
+
+test('should set calendarFocused on focus change', () => {
+  const wrapper = shallow(<ExpenseForm></ExpenseForm>)
+  const onFocusChange = wrapper.find('SingleDatePicker').prop('onFocusChange')
+  onFocusChange({ focused: true })
+  expect(wrapper.state('calendarFocused')).toBe(true)
+  onFocusChange({ focused: false })
+  expect(wrapper.state('calendarFocused')).toBe(false)
 })
