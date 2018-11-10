@@ -4,9 +4,8 @@ import ExpenseForm from './ExpenseForm.jsx'
 import { addExpense } from '../actions/expenses.jsx'
 
 export class AddExpensePage extends React.Component {
-  onSubmit = (expense) => {
-    // props.dispatch(addExpense(expense))
-    this.props.onSubmit(expense)
+  addExpense = (expense) => {
+    this.props.addExpense(expense)
     this.props.history.push('/')
   }
 
@@ -15,7 +14,7 @@ export class AddExpensePage extends React.Component {
       <div>
         <h1>Add expense</h1>
         <ExpenseForm
-          onSubmit={this.onSubmit}
+          onSubmit={this.addExpense}
         ></ExpenseForm>
       </div>
     )
@@ -26,7 +25,7 @@ export class AddExpensePage extends React.Component {
 // so mapDispatchToProps allows calling the dispatch function from another function, which then can be called in the actual component through props.
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSubmit: (expense) => dispatch(addExpense(expense))
+    addExpense: (expense) => dispatch(addExpense(expense))
   }
 }
 
