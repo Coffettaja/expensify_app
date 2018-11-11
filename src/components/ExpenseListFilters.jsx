@@ -19,20 +19,24 @@ class ExpenseListFilters extends React.Component {
     }))
   }
 
+  onTextChange = (e) => {
+    this.props.dispatch(setTextFilter(e.target.value))
+  }
+
+  onSortChange = (e) => {
+    e.target.value === 'date' ? this.props.dispatch(sortByDate()) : this.props.dispatch(sortByAmount())
+  }
+
   render() {
     return (
       <div>
         <input
           type="text"
           value={this.props.filters.text}
-          onChange={(e) => {
-            this.props.dispatch(setTextFilter(e.target.value)) // Connected components have dispatch in props by default.
-          }} />
+          onChange={onTextChange} />
         <select
           value={this.props.filters.sortBy}
-          onChange={(e) => {
-            e.target.value === 'date' ? this.props.dispatch(sortByDate()) : this.props.dispatch(sortByAmount())
-          }} >
+          onChange={onSortChange} >
           <option value="date">Date</option>
           <option value="amount">Amount</option>
         </select>

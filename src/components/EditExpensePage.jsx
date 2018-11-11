@@ -6,12 +6,12 @@ import { editExpense, removeExpense } from '../actions/expenses.jsx'
 import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
 export class EditExpensePage extends React.Component {
-  editExpense = (newExpense) => {
-    this.props.editExpense(this.props.expense.id, newExpense)
+  onSubmit = (newExpenseValues) => {
+    this.props.editExpense(this.props.expense.id, newExpenseValues)
     this.props.history.push('/')
   }
 
-  removeExpense = () => {
+  onRemoveClick = () => {
     this.props.removeExpense(this.props.expense.id)
     this.props.history.push('/')
   }
@@ -30,42 +30,14 @@ export class EditExpensePage extends React.Component {
     return (
       <div>
         <ExpenseForm
-          onSubmit={this.editExpense}
+          onSubmit={this.onSubmit}
           expense={this.props.expense}
         ></ExpenseForm>
-        <button onClick={this.removeExpense}>Remove!</button>
+        <button onClick={this.onRemoveClick}>Remove!</button>
       </div>
     )
   }
 }
-
-// const EditExpensePage = (props) => {
-//   if (!props.expense) {
-//     return (
-//       <div>
-//         <p>
-//           Looks like this expense does not exist :(
-//         </p>
-//         <Link to="/">Back to dashboard</Link>
-//       </div>
-//     )
-//   }
-//   return (
-//   <div>
-//     <ExpenseForm 
-//       onSubmit={(expense) => {
-//         props.dispatch(editExpense(props.expense.id, expense))
-//         // console.log(expense)
-//         props.history.push('/')
-//       }} 
-//       expense={props.expense}
-//     ></ExpenseForm>
-//     <button onClick={(e) => {
-//       props.dispatch(removeExpense(props.expense.id))
-//       props.history.push('/')
-//     }}>Remove!</button>
-//   </div>
-// )}
 
 const mapStateToProps = (state, props) => {
   return {
@@ -75,7 +47,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editExpense: (id, newExpense) => dispatch(editExpense(id, newExpense)),
+    editExpense: (id, newExpenseValues) => dispatch(editExpense(id, newExpenseValues)),
     removeExpense: (id) => dispatch(removeExpense(id))
   }
 }
