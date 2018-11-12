@@ -12,11 +12,6 @@ import 'react-dates/lib/css/_datepicker.css'
 
 const store = configureStore()
 
-store.dispatch(addExpense({description: 'Wata bill', amount: 40, createdAt: 1}))
-store.dispatch(addExpense({description: 'Gas bill', amount: 20, createdAt: 22}))
-store.dispatch(addExpense({description: 'Rent', amount: 200, createdAt: 14}))
-store.dispatch(addExpense({description: 'LaterRent', amount: 200, createdAt: 15}))
-
 // Provider provides the redux state to all the components inside.
 const jsx = (
   <Provider store={store}>

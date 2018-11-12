@@ -21,15 +21,23 @@ export const addExpense = (
     createdAt,
   }
 })
-
-// Returns an object that states what expense should be removed by ID
-export const removeExpense = (id) => ({
+/**
+ * Generates an action object that states what expense should be removed by ID
+ * @return {Object} an action object for removing expenses from the state
+ * @param {string} id
+ */
+const removeExpense = (id) => ({
   type: 'REMOVE_EXPENSE',
   id
 })
 
-// Action that edits the expense with 'id' with the values provided by the 'updates' object
-export const editExpense = (id, updates) => ({
+/**
+ * Generates an action object with id of expense to be edited and updates.
+ *
+ * @param {string} id of the expense to be edited
+ * @param {Object} updates - states the new property values
+ */
+const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
   updates
