@@ -1,6 +1,6 @@
 import React from 'react'
-import ExpenseList from './ExpenseList.jsx'
-import ExpenseListFilters from './ExpenseListFilters.jsx'
+import ExpenseList from './ExpenseList'
+import ExpenseListFilters from './ExpenseListFilters'
 
 const ExpenseDashboardPage = () => (
   <div>

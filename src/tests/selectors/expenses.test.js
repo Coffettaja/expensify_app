@@ -1,5 +1,5 @@
 import moment from 'moment'
-import getVisibleExpenses from '../../selectors/expenses.jsx'
+import getVisibleExpenses from '../../selectors/expenses'
 import expenses from '../fixtures/expenses'
 
 const defaultFilters = {

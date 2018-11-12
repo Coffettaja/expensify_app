@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { ExpenseListFilters } from '../../components/ExpenseListFilters.jsx'
+import { ExpenseListFilters } from '../../components/ExpenseListFilters'
 import { defaultFilters, altFilters } from '../fixtures/filters'
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, wrapper

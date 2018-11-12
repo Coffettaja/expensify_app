@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux' // connects the component to the redux store
-import ExpenseListItem from './ExpenseListItem.jsx'
-import selectExpenses from '../selectors/expenses.jsx'
+import ExpenseListItem from './ExpenseListItem'
+import selectExpenses from '../selectors/expenses'
 
 // exported for testing purposes
 export const ExpenseList = (props) => (

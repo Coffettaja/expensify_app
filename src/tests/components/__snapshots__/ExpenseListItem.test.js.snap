@@ -22,26 +22,3 @@ exports[`should render ExpenseListItem correctly 1`] = `
   </li>
 </div>
 `;
-
-exports[`should render expense correctly 1`] = `
-<div>
-  <li>
-    <Link
-      replace={false}
-      to="/edit/2"
-    >
-      rent
-    </Link>
-    <ul>
-      <li>
-        Amount: 
-        16000
-      </li>
-      <li>
-        Created at: 
-        345600000
-      </li>
-    </ul>
-  </li>
-</div>
-`;

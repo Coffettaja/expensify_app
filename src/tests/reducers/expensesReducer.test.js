@@ -1,5 +1,5 @@
-import expensesReducer from '../../reducers/expensesReducer.jsx'
-import { addExpense, removeExpense, editExpense } from '../../actions/expenses.jsx'
+import expensesReducer from '../../reducers/expensesReducer'
+import { addExpense, removeExpense, editExpense } from '../../actions/expenses'
 import expenses from '../fixtures/expenses'
 
 

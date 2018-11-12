@@ -1,10 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ExpenseForm from './ExpenseForm.jsx'
-import { addExpense } from '../actions/expenses.jsx'
+import ExpenseForm from './ExpenseForm'
+import { addExpense } from '../actions/expenses'
 
 export class AddExpensePage extends React.Component {
-  addExpense = (expense) => {
+  /**
+  * Dispatches an addExpense action to the store, and then returns to homepage.
+  * @param {Object} expense to be added if succesful
+  */
+  onSubmit = (expense) => {
     this.props.addExpense(expense)
     this.props.history.push('/')
   }
@@ -14,7 +18,7 @@ export class AddExpensePage extends React.Component {
       <div>
         <h1>Add expense</h1>
         <ExpenseForm
-          onSubmit={this.addExpense}
+          onSubmit={this.onSubmit}
         ></ExpenseForm>
       </div>
     )

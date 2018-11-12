@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux'
-import expensesReducer from '../reducers/expensesReducer.jsx'
-import filtersReducer from '../reducers/filtersReducer.jsx'
+import expensesReducer from '../reducers/expensesReducer'
+import filtersReducer from '../reducers/filtersReducer'
 
 // Store creation
 // combineReducers takes an object that contains the key - value pairs. Key is the root state name, and the value is the reducer that is supposed to manage that.

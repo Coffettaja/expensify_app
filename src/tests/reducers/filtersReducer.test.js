@@ -1,5 +1,5 @@
 import moment from 'moment'
-import filtersReducer from '../../reducers/filtersReducer.jsx'
+import filtersReducer from '../../reducers/filtersReducer'
 
 // Maybe smarter to import the actual action generators and use them instead of hard coding all the actions again...
 

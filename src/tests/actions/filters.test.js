@@ -1,4 +1,4 @@
-import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../../actions/filters.jsx'
+import { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate } from '../../actions/filters'
 import moment from 'moment'
 
 

@@ -1,4 +1,4 @@
-import{ addExpense, removeExpense, editExpense} from '../../actions/expenses.jsx'
+import{ addExpense, removeExpense, editExpense} from '../../actions/expenses'
 
 describe('addExpense', () => {
   test('should setup add expense action object with provided values', () => {
