@@ -26,7 +26,7 @@ export const addExpense = (
  * @return {Object} an action object for removing expenses from the state
  * @param {string} id
  */
-const removeExpense = (id) => ({
+export const removeExpense = (id) => ({
   type: 'REMOVE_EXPENSE',
   id
 })
@@ -36,8 +36,10 @@ const removeExpense = (id) => ({
  *
  * @param {string} id of the expense to be edited
  * @param {Object} updates - states the new property values
+ * @param {string} [updates.description] - new description
+ * @returns {Object} with the type: 'EDIT_EXPENSE'
  */
-const editExpense = (id, updates) => ({
+export const editExpense = (id, updates) => ({
   type: 'EDIT_EXPENSE',
   id,
   updates
