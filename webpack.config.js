@@ -13,8 +13,8 @@ module.exports = (env) => {
     entry: './src/app.js',
     // entry: './src/playground/hoc.jsx',
     output: {
-      // ABSOLUTE PATH were the webpack file is output.
-      path: path.join(__dirname, 'public'),
+      // ABSOLUTE PATH were the bundle.js is output.
+      path: path.join(__dirname, 'public', 'dist'),
       filename: 'bundle.js'
     },
     module: {
@@ -49,7 +49,8 @@ module.exports = (env) => {
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true // tells the devServer that the routing is handled client-side, and therefore the index.html page should be served for all 404 routes
+      historyApiFallback: true, // tells the devServer that the routing is handled client-side, and therefore the index.html page should be served for all 404 routes
+      publicPath: '/dist/'
     }
   }
 }
