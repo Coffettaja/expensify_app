@@ -28,7 +28,7 @@ export default class ExpenseForm extends React.Component {
   onAmountChange = (e) => {
     const amount = e.target.value
 
-    if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
+    if (!amount || amount.match(/^\d{1,}(\,\d{0,2})?$/)) {
       this.setState(() => ({ amount }))
     }
   }
@@ -56,7 +56,7 @@ export default class ExpenseForm extends React.Component {
       }))
       this.props.onSubmit({
         description: this.state.description,
-        amount: parseFloat(this.state.amount, 10) * 100, // Multiply by 100 to make the amount to be cents instead of dollars / euros
+        amount: parseFloat(this.state.amount.replace(',', '.'), 10) * 100, // Multiply by 100 to make the amount to be cents instead of dollars / euros
         createdAt: this.state.createdAt.valueOf(), // Get the timestamp of the moment object
         note: this.state.note,
       })

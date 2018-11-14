@@ -12,11 +12,11 @@ exports[`should render ExpenseListItem correctly 1`] = `
     <ul>
       <li>
         Amount: 
-        16000
+        160,00€
       </li>
       <li>
         Created at: 
-        345600000
+        January 5th, 1970
       </li>
     </ul>
   </li>
