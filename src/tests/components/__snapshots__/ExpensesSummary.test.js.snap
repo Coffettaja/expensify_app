@@ -1,29 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render correctly when no expenses 1`] = `""`;
+exports[`should render correctly when no expenses 1`] = `
+<div>
+  <h3>
+    No expenses
+  </h3>
+</div>
+`;
 
 exports[`should render correctly when there are expenses 1`] = `
 <div>
-  <p>
+  <h3>
     Viewing 
     4
      
     expenses
     , totalling 
     45,23€
-  </p>
+  </h3>
 </div>
 `;
 
 exports[`should render correctly when there is one expense 1`] = `
 <div>
-  <p>
+  <h3>
     Viewing 
     1
      
     expense
     , totalling 
     0,02€
-  </p>
+  </h3>
 </div>
 `;
