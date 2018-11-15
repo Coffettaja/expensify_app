@@ -1,4 +1,4 @@
-import getExpensesTotalAmount from '../../selectors/expenses_total'
+import getExpensesTotalAmount from '../../selectors/getExpensesTotalAmount'
 import expenses from '../fixtures/expenses'
 
 
