@@ -9,6 +9,11 @@ test('should render correctly when no expenses', () => {
   expect(wrapper).toMatchSnapshot()
 })
 
+test('should render correctly when there is one expense', () => {
+  const wrapper = shallow(<ExpensesSummary expensesCount={1} expensesTotal={2}></ExpensesSummary>)
+  expect(wrapper).toMatchSnapshot()
+})
+
 test('should render correctly when there are expenses', () => {
   const wrapper = shallow(<ExpensesSummary expensesCount={expenses.length} expensesTotal={4523}></ExpensesSummary>)
   expect(wrapper).toMatchSnapshot()

@@ -7,8 +7,23 @@ exports[`should render correctly when there are expenses 1`] = `
   <p>
     Viewing 
     4
-     expenses, totalling 
+     
+    expenses
+    , totalling 
     45,23€
+  </p>
+</div>
+`;
+
+exports[`should render correctly when there is one expense 1`] = `
+<div>
+  <p>
+    Viewing 
+    1
+     
+    expense
+    , totalling 
+    0,02€
   </p>
 </div>
 `;
