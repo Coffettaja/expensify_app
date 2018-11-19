@@ -13,6 +13,8 @@ firebase.initializeApp(config)
 
 const database = firebase.database()
 
+export { firebase, database as default }
+
 // .ref() gives a reference to a specific part in the database
 // .set() sets the database value for that part. It overrides any previous values.
 // therefore, to update a value, a parameter for ref() has to be given

@@ -1,26 +1,57 @@
 import uuid from 'uuid'
+import database from '../firebase/firebase'
 
 //  The action generators for expenses
 
 // Add expense
 // Takes an object as an argument. The object will be used to set the expense properties. Default values for the argument object and default properties also set. An expense gets an ID value from uuid library function. 
-export const addExpense = (
-  {
-    description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0
-  } = {}
-) => ({
+// export const addExpense = (
+//   {
+//     description = '',
+//     note = '',
+//     amount = 0,
+//     createdAt = 0
+//   } = {}
+// ) => ({
+//   type: 'ADD_EXPENSE',
+//   expense: {
+//     id: uuid(),
+//     description,
+//     note,
+//     amount,
+//     createdAt,
+//   }
+// })
+
+export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
-  expense: {
-    id: uuid(),
-    description,
-    note,
-    amount,
-    createdAt,
-  }
+  expense
 })
+
+// starts the process of adding an expense to the store
+export const startAddExpense = (expenseData = {}) => {
+  // returning functions is OK because of redux-thunk middleware
+  return (dispatch) => {
+    // this has basically the same result as default values in addExpense but maybe easier to read
+    const {
+      description = '',
+      note = '',
+      amount = 0,
+      createdAt = 0
+    } = expenseData
+
+    // First push the data to the database, and if that works, dispatch the action to the redux store
+    const expense = { description, note, amount, createdAt }
+    database.ref('expenses').push(expense)
+      .then((ref) => {
+        dispatch(addExpense({
+          id: ref.key,
+          ...expense
+        }))
+      })
+  }
+}
+
 /**
  * Generates an action object that states what expense should be removed by ID
  * @return {Object} an action object for removing expenses from the state

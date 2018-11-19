@@ -1,15 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm'
-import { addExpense } from '../actions/expenses'
+import { startAddExpense } from '../actions/expenses'
 
 export class AddExpensePage extends React.Component {
-  /**
-  * Dispatches an addExpense action to the store, and then returns to homepage.
-  * @param {Object} expense to be added if succesful
-  */
   onSubmit = (expense) => {
-    this.props.addExpense(expense)
+    this.props.startAddExpense(expense)
     this.props.history.push('/')
   }
 
@@ -25,11 +21,11 @@ export class AddExpensePage extends React.Component {
   }
 }
 
-// using this so testing the component is easier. Above a spy function could be used to mock props.dispatch(), but addExpense() would be more troublesome.
+// using this so testing the component is easier. Above a spy function could be used to mock props.dispatch(), but startAddExpense() would be more troublesome.
 // so mapDispatchToProps allows calling the dispatch function from another function, which then can be called in the actual component through props.
 const mapDispatchToProps = (dispatch) => {
   return {
-    addExpense: (expense) => dispatch(addExpense(expense))
+    startAddExpense: (expense) => dispatch(startAddExpense(expense))
   }
 }
 
