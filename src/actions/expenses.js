@@ -31,6 +31,7 @@ export const addExpense = (expense) => ({
 // starts the process of adding an expense to the store
 export const startAddExpense = (expenseData = {}) => {
   // returning functions is OK because of redux-thunk middleware
+  // it also gives them the dispatch function as a parameter
   return (dispatch) => {
     // this has basically the same result as default values in addExpense but maybe easier to read
     const {
@@ -42,7 +43,8 @@ export const startAddExpense = (expenseData = {}) => {
 
     // First push the data to the database, and if that works, dispatch the action to the redux store
     const expense = { description, note, amount, createdAt }
-    database.ref('expenses').push(expense)
+    // returning below to make promise chaining possible
+    return database.ref('expenses').push(expense)
       .then((ref) => {
         dispatch(addExpense({
           id: ref.key,
