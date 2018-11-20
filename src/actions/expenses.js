@@ -43,7 +43,7 @@ export const startAddExpense = (expenseData = {}) => {
 
     // First push the data to the database, and if that works, dispatch the action to the redux store
     const expense = { description, note, amount, createdAt }
-    // returning below to make promise chaining possible
+    // returning a promise to make promise chaining possible (mainly for testing purposes)
     return database.ref('expenses').push(expense)
       .then((ref) => {
         dispatch(addExpense({
