@@ -13,7 +13,6 @@ beforeEach((done) => {
   expenses.forEach(({ id, description, amount, note, createdAt }) => {
     expensesData[id] = { description, amount, note, createdAt }
   })
-
   database.ref('expenses').set(expensesData).then(() => done())
 })
 
