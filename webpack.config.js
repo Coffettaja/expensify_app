@@ -9,7 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 process.env.NODE_ENV = process.env.NODE_ENV || 'development' // Stores the enviroment
 
 if (process.env.NODE_ENV === 'development') {
-  require('dotenv').config({ path: '.env.development' })
+  require('dotenv').config({ path: '.env.test' })
 }
 
 // On this object, all the configuration details for webpack build are defined.
