@@ -1,5 +1,5 @@
 import expensesReducer from '../../reducers/expensesReducer'
-import { addExpense, removeExpense, editExpense } from '../../actions/expenses'
+import { addExpense, removeExpense, editExpense, setExpenses } from '../../actions/expenses'
 import expenses from '../fixtures/expenses'
 
 
@@ -62,5 +62,12 @@ describe('removing expenses', () => {
     const state = expensesReducer(expenses, action)
     expect(state).toEqual(expenses)
   })
+})
+
+test('should set expenses', () => {
+  const newExpenses = [{ id: 75, description: 'new expense', amount: 3333, note: '', createdAt: '75550' }, { id: 85, description: 'new expense2', amount: 333333, note: '', createdAt: '55450' }]
+  const action = setExpenses(newExpenses)
+  const state = expensesReducer(expenses, action)
+  expect(state).toEqual(newExpenses)
 })
 
