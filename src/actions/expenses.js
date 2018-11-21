@@ -54,24 +54,6 @@ export const startAddExpense = (expenseData = {}) => {
   }
 }
 
-export const startSetExpenses = () => {
-  const expenses = []
-  return (dispatch) => {
-    return database.ref('expenses').once('value').then((snapshot) => {
-      // Transforming the firebase object structure to an array structure
-      snapshot.forEach((childSnapshot) => {
-        expenses.push({
-          id: childSnapshot.key,
-          ...childSnapshot.val()
-        })
-      })
-      dispatch(setExpenses(expenses))
-    })
-
-  }
-
-}
-
 /**
  * Generates an action object that states what expense should be removed by ID
  * @return {Object} an action object for removing expenses from the state
@@ -100,4 +82,20 @@ export const setExpenses = (expenses) => ({
   type: 'SET_EXPENSES',
   expenses
 })
+
+export const startSetExpenses = () => {
+  const expenses = []
+  return (dispatch) => {
+    return database.ref('expenses').once('value').then((snapshot) => {
+      // Transforming the firebase object structure to an array structure
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        })
+      })
+      dispatch(setExpenses(expenses))
+    })
+  }
+}
 

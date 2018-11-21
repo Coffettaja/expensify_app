@@ -30,7 +30,7 @@ describe('editing expenses', () => {
 
   test('should edit the expense specified by id', () => {
     
-    const action = editExpense(3, updates)
+    const action = editExpense('3', updates)
     const state = expensesReducer(expenses, action)
     expect(state).toEqual([
       expenses[0],

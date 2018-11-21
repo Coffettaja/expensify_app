@@ -47,7 +47,7 @@ test('should set note on input change', () => {
 
 test('should set amount if valid input', () => {
   const wrapper = shallow(<ExpenseForm></ExpenseForm>)
-  const value = '22.50'
+  const value = '22,50'
   wrapper.find('input[placeholder="Amount"]').at(0).simulate('change', {
     target: { value }
   })
