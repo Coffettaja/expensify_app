@@ -3,4 +3,5 @@
 /public/dist/
 *.log
 .vscode/
+.env.*
 todo.txt
