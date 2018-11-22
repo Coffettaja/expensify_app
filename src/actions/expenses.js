@@ -64,6 +64,8 @@ export const removeExpense = (id) => ({
   id
 })
 
+
+
 /**
  * Generates an action object with id of expense to be edited and updates.
  *
@@ -99,3 +101,10 @@ export const startSetExpenses = () => {
   }
 }
 
+export const startRemoveExpense = (id) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense(id))
+    })
+  }
+}

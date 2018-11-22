@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm'
-import { editExpense, removeExpense } from '../actions/expenses'
+import { editExpense, startRemoveExpense } from '../actions/expenses'
 import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
 export class EditExpensePage extends React.Component {
@@ -12,7 +12,7 @@ export class EditExpensePage extends React.Component {
   }
 
   onRemoveClick = () => {
-    this.props.removeExpense(this.props.expense.id)
+    this.props.startRemoveExpense(this.props.expense.id)
     this.props.history.push('/')
   }
 
@@ -48,7 +48,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     editExpense: (id, newExpenseValues) => dispatch(editExpense(id, newExpenseValues)),
-    removeExpense: (id) => dispatch(removeExpense(id))
+    startRemoveExpense: (id) => dispatch(startRemoveExpense(id))
   }
 }
 
