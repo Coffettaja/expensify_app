@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm'
-import { editExpense, startRemoveExpense } from '../actions/expenses'
+import { startEditExpense, startRemoveExpense } from '../actions/expenses'
 import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
 export class EditExpensePage extends React.Component {
   onSubmit = (newExpenseValues) => {
-    this.props.editExpense(this.props.expense.id, newExpenseValues)
+    this.props.startEditExpense(this.props.expense.id, newExpenseValues)
     this.props.history.push('/')
   }
 
@@ -47,7 +47,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    editExpense: (id, newExpenseValues) => dispatch(editExpense(id, newExpenseValues)),
+    startEditExpense: (id, newExpenseValues) => dispatch(startEditExpense(id, newExpenseValues)),
     startRemoveExpense: (id) => dispatch(startRemoveExpense(id))
   }
 }
