@@ -12,8 +12,9 @@ const config = {
 firebase.initializeApp(config)
 
 const database = firebase.database()
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
-export { firebase, database as default }
+export { firebase, googleAuthProvider, database as default }
 
 // .ref() gives a reference to a specific part in the database
 // .set() sets the database value for that part. It overrides any previous values.
