@@ -8,7 +8,7 @@ export const LoginPage = ({startLogin}) => (
   </div>
 )
 
-// is there a reason to dispatch this? doesn't change redux store 
+// is there a reason to dispatch this? doesn't change redux store lol
 const mapDispatchToProps = (dispatch) => ({
   startLogin: () => dispatch(startLogin())
 })
