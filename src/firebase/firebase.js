@@ -30,5 +30,3 @@ export { firebase, googleAuthProvider, database as default }
 // }).catch((e) => {
 //   console.log('error:', e)
 // })
-
-database.ref('isFinnish').remove()

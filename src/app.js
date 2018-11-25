@@ -31,7 +31,7 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'))
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // should explicitly call the normal syncronous login / logout, so the state actually gets sets even when just visiting the page, and not just after auth state changed
+    // should explicitly call the normal syncronous login / logout, so the state actually gets set even when just visiting the page, and not just after auth state changed
     store.dispatch(login(user.uid))
     store.dispatch(startSetExpenses()).then(() => {
       renderApp()
