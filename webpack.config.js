@@ -20,7 +20,7 @@ module.exports = (env) => {
   const CSSExtract = new ExtractTextPlugin('styles.css')
 
   return {
-    entry: './src/app.js',
+    entry: ['babel-polyfill', './src/app.js'],
     // entry: './src/playground/hoc.jsx',
     output: {
       // ABSOLUTE PATH were the bundle.js is output.
