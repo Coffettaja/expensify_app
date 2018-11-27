@@ -5,14 +5,13 @@ import formatAmount from '../selectors/formatAmount'
 // import numeral from 'numeral'
 
 const ExpenseListItem = ({ description, amount, createdAt, id }) => (
-  <div>
-    <li><Link to={`/edit/${id}`}>{description}</Link>
-      <ul>
-        <li>Amount: {formatAmount(amount)}</li>
-        <li>Created at: {moment(createdAt).format('MMMM Do, YYYY')}</li>
-      </ul>
-    </li> 
-  </div>
+    <Link className="list-item" to={`/edit/${id}`}>
+      <div>
+        <h3 className="list-item__title">{description}</h3>
+        <span className="list-item__sub-title">{moment(createdAt).format('MMMM Do, YYYY')}</span>
+      </div>
+      <h3 className="list-item__data">{formatAmount(amount)}</h3>
+    </Link>      
 )
 
 export default ExpenseListItem
