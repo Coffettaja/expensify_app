@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 // Component that redirects the user back the main page if they are not logged in
 export const PrivateRoute = ({
@@ -11,9 +12,10 @@ export const PrivateRoute = ({
 }) => (
   <Route {...rest} component={(props) => (
     isAuthenticated ? (
-      <div>
+      <div className="content-div">
         <Header></Header>
         <Component {...props} ></Component>
+        <Footer></Footer>
       </div>
     ) : (
       <Redirect to="/" ></Redirect>
