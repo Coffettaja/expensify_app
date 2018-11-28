@@ -1,3 +1,5 @@
-## Expensify App ##
+## Expense Manager App ##
 
-Created with the help of Udemy React tutorial
+[The deployed app.](https://expense-manager-react-app.herokuapp.com/)
+
+Made with the intention of learning React, Redux, Webpack, Jest among other things.
