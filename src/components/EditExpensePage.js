@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm'
 import { startEditExpense, startRemoveExpense } from '../actions/expenses'
-import { SSL_OP_CRYPTOPRO_TLSEXT_BUG } from 'constants';
 
 export class EditExpensePage extends React.Component {
   onSubmit = (newExpenseValues) => {

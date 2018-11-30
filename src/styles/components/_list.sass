@@ -7,6 +7,9 @@
   padding: $s-size $m-size
 
 .list-item
+  position: relative
+
+.list-item__link
   border: 1px solid darken($off-white, 7%)
   border-top: none
   color: $dark-gray  
@@ -40,7 +43,7 @@
   font-size: $font-size-small
 
 .list-item__data
-  margin: $s-size 0 0 0
+  margin: $s-size 7rem 0 0
   @media (min-width: $desktop-breakpoint)
-    margin: 0
+    margin-top: 0
     padding-left: $s-size
