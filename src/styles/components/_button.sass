@@ -14,12 +14,22 @@
   background: none
 
 .button--secondary
-  background: hsl(0, 88%, 48%)
+  background: white
+  color: $dark-gray
+  border: 1px solid $dark-gray
 
-.button--remove
-  background: #d51919
+.button--warning
+  background: $warning-red
+
+.remove-button
+  background: $warning-red
   border-radius: 0
-  padding: 0.35rem
+  color: white
+  height: 2.5rem
+  width: 2.5rem
+  border: none
   position: absolute
   top: 0
   right: 0
+  &:hover
+    background: lighten($warning-red, 7%)

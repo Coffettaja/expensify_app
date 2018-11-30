@@ -1,14 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { confirmAlert } from 'react-confirm-alert'
 import moment from 'moment'
 import formatAmount from '../selectors/formatAmount'
 import { startRemoveExpense } from '../actions/expenses'
+import RemoveConfirmationDialog from './RemoveConfirmationDialog'
 
 
 export class ExpenseListItem extends React.Component {
   onRemoveClick = () => {
-    this.props.startRemoveExpense(this.props.id)
+    confirmAlert({
+      customUI: ({ onClose }) => (
+        <RemoveConfirmationDialog onClose={onClose} onConfirm={() => {
+          this.props.startRemoveExpense(this.props.id)
+        }}></RemoveConfirmationDialog>
+      )
+    })
   }
 
   render() {
@@ -21,21 +29,11 @@ export class ExpenseListItem extends React.Component {
         </div>
         <h3 className="list-item__data">{formatAmount(this.props.amount)}</h3>
       </Link>
-        <button onClick={this.onRemoveClick} className="button button--remove">X</button>
+        <button onClick={this.onRemoveClick} className="remove-button">X</button>
       </div>
     )
   }
 }
-//  = ({ description, amount, createdAt, id, removeExpense }) => (
-//     <Link className="list-item" to={`/edit/${id}`}>
-//       <div>
-//         <h3 className="list-item__title">{description}</h3>
-//         <span className="list-item__sub-title">{moment(createdAt).format('MMMM Do, YYYY')}</span>
-//       </div>
-//       <h3 className="list-item__data">{formatAmount(amount)}</h3>
-//       <button onClick={onRemoveClick} className="button button--remove">X</button>
-//     </Link>      
-// )
 
 const mapDispatchToProps = (dispatch) => ({
   startRemoveExpense: (id) => dispatch(startRemoveExpense(id))

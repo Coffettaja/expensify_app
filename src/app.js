@@ -8,6 +8,7 @@ import { login, logout } from './actions/auth'
 import './styles/styles.sass'
 import 'normalize.css/normalize.css'
 import 'react-dates/lib/css/_datepicker.css'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import { firebase } from './firebase/firebase'
 import LoadingPage from './components/LoadingPage'
 

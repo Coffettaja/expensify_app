@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ExpenseForm from './ExpenseForm'
+import { confirmAlert } from 'react-confirm-alert'
 import { startEditExpense, startRemoveExpense } from '../actions/expenses'
+import RemoveConfirmationDialog from './RemoveConfirmationDialog'
 
 export class EditExpensePage extends React.Component {
   onSubmit = (newExpenseValues) => {
@@ -11,7 +13,13 @@ export class EditExpensePage extends React.Component {
   }
 
   onRemoveClick = () => {
-    this.props.startRemoveExpense(this.props.expense.id)
+    confirmAlert({
+      customUI: ({ onClose }) => (
+        <RemoveConfirmationDialog onClose={onClose} onConfirm={() => {
+          this.props.startRemoveExpense(this.props.expense.id)
+        }}></RemoveConfirmationDialog>
+      )
+    })
     this.props.history.push('/')
   }
 
@@ -38,7 +46,7 @@ export class EditExpensePage extends React.Component {
             onSubmit={this.onSubmit}
             expense={this.props.expense}
           ></ExpenseForm>
-          <button className="button button--secondary" onClick={this.onRemoveClick}>Remove Expense</button>
+          <button className="button button--warning" onClick={this.onRemoveClick}>Remove Expense</button>
         </div>
       </div>
     )
