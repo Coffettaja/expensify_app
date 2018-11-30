@@ -17,10 +17,10 @@ export class EditExpensePage extends React.Component {
       customUI: ({ onClose }) => (
         <RemoveConfirmationDialog onClose={onClose} onConfirm={() => {
           this.props.startRemoveExpense(this.props.expense.id)
+          this.props.history.push('/')
         }}></RemoveConfirmationDialog>
       )
     })
-    this.props.history.push('/')
   }
 
   render() {
