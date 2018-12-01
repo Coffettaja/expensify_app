@@ -1,5 +1,4 @@
 import moment from 'moment'
-import { create } from 'domain';
 
 // Gets the visible expenses in sorted order. Takes two arguments: expenses, which is the complete array of expenses, and filters that are used to filter the expenses shown.
 const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
@@ -13,18 +12,24 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
 
       return startDateMatch && endDateMatch && textMatch
     })
-    // Sorts the expenses by either date or amount
+    // Sorts the expenses by either date or amount,
+    // if same date or amount, the one with the higher amount / date comes first
     .sort((a, b) => {
       if (sortBy === 'date') {
+        const momentA = moment(a.createdAt)
+        const momentB = moment(b.createdAt)
+        if (momentA.isSame(momentB, 'day')) {
+          return b.amount - a.amount
+        }
         return b.createdAt - a.createdAt
       }
       if (sortBy === 'amount') {
         // When sorting by amount, the highest amount obviously comes first.
         // However, if the amounts are equal, the newer expense comes first.
-        if (b.amount - a.amount !== 0) {
-          return b.amount - a.amount
+        if (b.amount - a.amount === 0) {
+          return b.createdAt - a.createdAt
         }
-        return b.createdAt - a.createdAt
+        return b.amount - a.amount
       }
     })
 }
