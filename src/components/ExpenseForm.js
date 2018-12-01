@@ -12,6 +12,8 @@ export default class ExpenseForm extends React.Component {
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false,
       error: '',
+      descriptionError: false,
+      amountError: false
     }
   }
   
@@ -48,7 +50,9 @@ export default class ExpenseForm extends React.Component {
 
     if (!this.state.description || !this.state.amount) {
       this.setState(() => ({
-        error: 'Please provide description and amount.'
+        error: 'Please provide description and amount.',
+        descriptionError: !this.state.description,
+        amountError: !this.state.amount
       }))
     } else {
       this.setState(() => ({
@@ -64,7 +68,10 @@ export default class ExpenseForm extends React.Component {
   }
 
   render() {
-    // moment.locale('en')
+    const descriptionInputClass = "text-input"
+    if (this.state.descriptionError) descriptionInputClass.concat(" text-input--error")
+    const amountInputClass = "text-input"
+    if (this.state.descriptionError) amountInputClass.concat(" text-input--error")
     return (
       <form className="form" onSubmit={this.onSubmit} >
         {this.state.error && <p className="form__error">{this.state.error}</p>}
