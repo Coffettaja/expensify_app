@@ -5,13 +5,14 @@ import getExpensesTotalAmount from '../selectors/getExpensesTotalAmount'
 import getVisibleExpenses from '../selectors/expenses'
 import formatAmount from '../selectors/formatAmount'
 
-export const ExpensesSummary = ({expensesCount, expensesTotal}) => {
-  // if (expensesCount === 0) return null // whole page shifts when filtering...
-  const expenseWord = expensesCount === 1 ? 'expense' : 'expenses'
+export const ExpensesSummary = ({visibleExpensesCount, totalExpensesCount, expensesTotal}) => {
+  const viewingAllExpenses = visibleExpensesCount === totalExpensesCount
   return (
     <div className="page-header">
       <div className="content-container">
-        {expensesCount === 0 ? <h1 className="page-header__title">No expenses</h1> : <h1 className="page-header__title">Viewing <span>{expensesCount}</span> {expenseWord}, totalling <span>{formatAmount(expensesTotal)}</span></h1>}
+        {viewingAllExpenses ? 
+          <h1 className="page-header__title">Viewing all <span>{visibleExpensesCount}</span> expenses, totalling <span>{formatAmount(expensesTotal)}</span></h1> : 
+          <h1 className="page-header__title">Viewing <span>{visibleExpensesCount}</span> ouf of {totalExpensesCount} expenses, totalling <span>{formatAmount(expensesTotal)}</span></h1>}
         <div className="page-header__actions">
           <Link className="button" to="/create">Add Expense</Link>
         </div>
@@ -23,7 +24,8 @@ export const ExpensesSummary = ({expensesCount, expensesTotal}) => {
 const mapStateToProps = (state) => {
   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
   return {
-    expensesCount: visibleExpenses.length,
+    visibleExpensesCount: visibleExpenses.length,
+    totalExpensesCount: state.expenses.length,
     expensesTotal: getExpensesTotalAmount(visibleExpenses)
   }
 }
