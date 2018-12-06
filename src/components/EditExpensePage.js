@@ -26,11 +26,12 @@ export class EditExpensePage extends React.Component {
   render() {
     if (!this.props.expense) {
       return (
-        <div>
+        <div className="error-content">
           <p>
-            Looks like this expense does not exist :(
-        </p>
-          <Link to="/">Back to dashboard</Link>
+            Looks like the Expense you are trying to access does not exist.
+            <br></br>
+            <Link to="/">Back to Dashboard</Link>
+          </p>
         </div>
       )
     }
@@ -46,7 +47,7 @@ export class EditExpensePage extends React.Component {
             onSubmit={this.onSubmit}
             expense={this.props.expense}
           ></ExpenseForm>
-          <button className="button button--warning" onClick={this.onRemoveClick}>Remove Expense</button>
+          <button className="button button--warning" onClick={this.onRemoveClick}>Delete Expense</button>
         </div>
       </div>
     )
