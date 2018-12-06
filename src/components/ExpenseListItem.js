@@ -19,10 +19,14 @@ export class ExpenseListItem extends React.Component {
     })
   }
 
+  onMouseOver = () => {
+    console.log(this.props.note)
+  }
+
   render() {
     return (
       <div className="list-item">
-      <Link className="list-item__link" to={`/edit/${this.props.id}`}>
+      <Link onMouseOver={this.onMouseOver} className="list-item__link" to={`/edit/${this.props.id}`}>
         <div>
           <h3 className="list-item__title">{this.props.description}</h3>
           <span className="list-item__sub-title">{moment(this.props.createdAt).format('MMMM Do, YYYY')}</span>
