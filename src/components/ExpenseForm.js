@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 import { SingleDatePicker } from 'react-dates'
+import { history } from '../routers/AppRouter'
 
 export default class ExpenseForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,6 @@ export default class ExpenseForm extends React.Component {
       amount: props.expense ? (props.expense.amount / 100).toString() :  '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false,
-      error: '',
       descriptionError: false,
       amountError: false
     }
@@ -19,7 +19,10 @@ export default class ExpenseForm extends React.Component {
   
   onDescriptionChange = (e) => {
     const description = e.target.value
-    this.setState(() => ({ description }))
+    this.setState(() => ({ 
+      description,
+      descriptionError: !description
+     }))
   }
 
   onNoteChange = (e) => {
@@ -31,7 +34,10 @@ export default class ExpenseForm extends React.Component {
     const amount = e.target.value
 
     if (!amount || amount.match(/^\d{1,}(\,\d{0,2})?$/)) {
-      this.setState(() => ({ amount }))
+      this.setState(() => ({
+        amount,
+        amountError: !amount
+       }))
     }
   }
 
@@ -45,19 +51,20 @@ export default class ExpenseForm extends React.Component {
     this.setState(() => ({ calendarFocused: focused }))
   }
   
+  onCancel = () => {
+    history.push('/dashboard')
+  }
+
   onSubmit = (e) => {
     e.preventDefault()
-
-    if (!this.state.description || !this.state.amount) {
-      this.setState(() => ({
-        error: 'Please provide description and amount.',
-        descriptionError: !this.state.description,
-        amountError: !this.state.amount
-      }))
-    } else {
-      this.setState(() => ({
-        error: ''
-      }))
+    const descriptionError = !this.state.description
+    const amountError = !this.state.amount
+    this.setState(() => ({
+      descriptionError,
+      amountError
+    }))
+  
+    if (!descriptionError && !amountError) {
       this.props.onSubmit({
         description: this.state.description,
         amount: parseFloat(this.state.amount.replace(',', '.'), 10) * 100, // Multiply by 100 to make the amount to be cents instead of dollars / euros
@@ -68,10 +75,6 @@ export default class ExpenseForm extends React.Component {
   }
 
   render() {
-    const descriptionInputClass = "text-input"
-    if (this.state.descriptionError) descriptionInputClass.concat(" text-input--error")
-    const amountInputClass = "text-input"
-    if (this.state.descriptionError) amountInputClass.concat(" text-input--error")
     return (
       <form className="form" onSubmit={this.onSubmit} >
         {this.state.error && <p className="form__error">{this.state.error}</p>}
@@ -81,14 +84,14 @@ export default class ExpenseForm extends React.Component {
           autoFocus
           value={this.state.description}
           onChange={this.onDescriptionChange}
-          className="text-input"
+          className={`text-input ${this.state.descriptionError ? "text-input--error" : ''}`}
         />
         <input
           type="text"
           placeholder="Amount"
           value={this.state.amount}
           onChange={this.onAmountChange}
-          className="text-input"
+          className={`text-input ${this.state.amountError ? "text-input--error" : ''}`}
         />
         <SingleDatePicker
           date={this.state.createdAt}
@@ -105,8 +108,9 @@ export default class ExpenseForm extends React.Component {
           onChange={this.onNoteChange}
           className="textarea"
         />
-        <div>
-          <button className="button">Save Expense</button>
+        <div className="form__buttons-div">
+          <button type="submit" className="button">Save Expense</button>
+          <button type="button" className="button button--secondary" onClick={this.onCancel}>Cancel</button>
         </div>
       </form>
     )
