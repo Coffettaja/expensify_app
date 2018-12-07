@@ -32,7 +32,7 @@ export default class ExpenseForm extends React.Component {
 
   onAmountChange = (e) => {
     const amount = e.target.value
-
+    
     if (!amount || amount.match(/^\d{1,}(\,\d{0,2})?$/)) {
       this.setState(() => ({
         amount,
@@ -57,8 +57,16 @@ export default class ExpenseForm extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    const descriptionError = !this.state.description
-    const amountError = !this.state.amount
+    let descriptionError = !this.state.description
+    let amountError = !this.state.amount
+    // Multiply by 100 to make the amount to be cents instead of dollars / euros
+    const amountFloat = parseFloat(this.state.amount.replace(',', '.'), 10) * 100
+    // Basically if the input value is too big.
+    if (amountFloat > 1e+12) {
+      console.log(amountFloat)
+      amountError = true
+    }
+    
     this.setState(() => ({
       descriptionError,
       amountError
@@ -67,7 +75,7 @@ export default class ExpenseForm extends React.Component {
     if (!descriptionError && !amountError) {
       this.props.onSubmit({
         description: this.state.description,
-        amount: parseFloat(this.state.amount.replace(',', '.'), 10) * 100, // Multiply by 100 to make the amount to be cents instead of dollars / euros
+        amount: amountFloat, 
         createdAt: this.state.createdAt.valueOf(), // Get the timestamp of the moment object
         note: this.state.note,
       })
