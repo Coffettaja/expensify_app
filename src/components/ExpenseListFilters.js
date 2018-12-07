@@ -32,6 +32,7 @@ export class ExpenseListFilters extends React.Component {
       <div className="content-container">
         <div className="input-group">
           <div className="input-group__item">
+            <label>Filter by text:</label>
             <input
               type="text"
               placeholder="Filter expenses"
@@ -41,15 +42,18 @@ export class ExpenseListFilters extends React.Component {
                />
           </div>
           <div className="input-group__item">
+            <label>Sort by:</label>
             <select
               value={this.props.filters.sortBy}
               onChange={this.onSortChange} 
-              className="select">
+              className="select"
+              name="sort-by">
               <option value="date">Date</option>
               <option value="amount">Amount</option>
             </select>
           </div>
           <div className="input-group__item">
+            <label>Filter by dates:</label>
             <DateRangePicker
               startDate={this.props.filters.startDate}
               endDate={this.props.filters.endDate}

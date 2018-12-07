@@ -3,14 +3,24 @@
   flex-direction: column
   margin-bottom: $m-size
 
-  @media (min-width: $desktop-breakpoint)
-    flex-direction: row
-    margin-bottom: $l-size
-
 .input-group__item
   margin-bottom: $s-size
+  position: relative
 
-  @media (min-width: $desktop-breakpoint)
+  label
+    display: none
+
+@media (min-width: $desktop-breakpoint)
+  .input-group
+    flex-direction: row
+    margin-bottom: $l-size
+  .input-group__item
     margin: 0
     margin-right: $s-size
+    
+    label
+      position: absolute
+      display: inline-block
+      top: -2.7rem
+      left: 1rem
 

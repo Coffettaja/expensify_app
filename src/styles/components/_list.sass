@@ -16,6 +16,7 @@
   display: flex
   flex-direction: column
   padding: $s-size
+  padding-right: 2.1rem
   text-decoration: none
   transition: background .3 ease
   &:hover
@@ -36,14 +37,19 @@
 
 .list-item__title
   margin: 0
-  word-break: break-all
+  word-break: break-word
 
 .list-item__sub-title
   color: $gray
   font-size: $font-size-small
 
 .list-item__data
-  margin: $s-size 7rem 0 0
+  margin: $s-size 4rem 0 2rem
   @media (min-width: $desktop-breakpoint)
     margin-top: 0
     padding-left: $s-size
+
+button.DateRangePickerInput__clear-dates
+  margin: 0
+  @media (min-width: $desktop-breakpoint)
+    margin: 0 10px 0 5px
