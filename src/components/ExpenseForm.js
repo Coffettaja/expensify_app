@@ -12,13 +12,17 @@ export default class ExpenseForm extends React.Component {
       amount: props.expense ? (props.expense.amount / 100).toString() :  '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false,
+      error: '', // Not used anywhere right now. Could be used for displaying error messages.
       descriptionError: false,
       amountError: false
     }
   }
   
   onDescriptionChange = (e) => {
-    const description = e.target.value
+    let description = e.target.value
+    if (description.length > 50) {
+      description = description.slice(0, 50)
+    }
     this.setState(() => ({ 
       description,
       descriptionError: !description
@@ -26,12 +30,20 @@ export default class ExpenseForm extends React.Component {
   }
 
   onNoteChange = (e) => {
-    const note = e.target.value
+    let note = e.target.value
+    if (note.length > 300) 
+      {
+        // For example when copypasting it still works up to a point
+        note = note.slice(0, 300)
+      }
     this.setState(() => ({ note }))
   }
 
   onAmountChange = (e) => {
-    const amount = e.target.value
+    let amount = e.target.value
+    if (amount.length > 12) {
+        amount = amount.slice(0, 12)
+    }
     
     if (!amount || amount.match(/^\d{1,}(\,\d{0,2})?$/)) {
       this.setState(() => ({
@@ -61,15 +73,11 @@ export default class ExpenseForm extends React.Component {
     let amountError = !this.state.amount
     // Multiply by 100 to make the amount to be cents instead of dollars / euros
     const amountFloat = parseFloat(this.state.amount.replace(',', '.'), 10) * 100
-    // Basically if the input value is too big.
-    if (amountFloat > 1e+12) {
-      console.log(amountFloat)
-      amountError = true
-    }
     
     this.setState(() => ({
       descriptionError,
-      amountError
+      amountError,
+      error
     }))
   
     if (!descriptionError && !amountError) {
