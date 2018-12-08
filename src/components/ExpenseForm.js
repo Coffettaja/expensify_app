@@ -9,7 +9,7 @@ export default class ExpenseForm extends React.Component {
     this.state = {
       description: props.expense ? props.expense.description : '',
       note: props.expense ? props.expense.note : '',
-      amount: props.expense ? (props.expense.amount / 100).toString() :  '',
+      amount: props.expense ? (props.expense.amount / 100).toString().replace('.', ',') :  '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false,
       error: '', // Not used anywhere right now. Could be used for displaying error messages.
@@ -20,8 +20,9 @@ export default class ExpenseForm extends React.Component {
   
   onDescriptionChange = (e) => {
     let description = e.target.value
-    if (description.length > 50) {
-      description = description.slice(0, 50)
+    const maxLength = 75
+    if (description.length > maxLength) {
+      description = description.slice(0, maxLength)
     }
     this.setState(() => ({ 
       description,
@@ -31,18 +32,20 @@ export default class ExpenseForm extends React.Component {
 
   onNoteChange = (e) => {
     let note = e.target.value
-    if (note.length > 300) 
+    const maxLength = 350
+    if (note.length > maxLength) 
       {
         // For example when copypasting it still works up to a point
-        note = note.slice(0, 300)
+        note = note.slice(0, maxLength)
       }
     this.setState(() => ({ note }))
   }
 
   onAmountChange = (e) => {
     let amount = e.target.value
-    if (amount.length > 12) {
-        amount = amount.slice(0, 12)
+    const maxLength = 12
+    if (amount.length > maxLength) {
+        amount = amount.slice(0, maxLength)
     }
     
     if (!amount || amount.match(/^\d{1,}(\,\d{0,2})?$/)) {
@@ -76,8 +79,7 @@ export default class ExpenseForm extends React.Component {
     
     this.setState(() => ({
       descriptionError,
-      amountError,
-      error
+      amountError
     }))
   
     if (!descriptionError && !amountError) {
