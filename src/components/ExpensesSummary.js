@@ -16,10 +16,10 @@ export const ExpensesSummary = ({visibleExpensesCount, totalExpensesCount, expen
         noExpenses ? 
           <h1 className="page-header__title">No expenses.</h1> : 
         viewingAllExpenses ? 
-          <h1 className="page-header__title">Viewing all <span>{visibleExpensesCount}</span> expenses, totalling <span>{formatAmount(expensesTotal)}</span></h1> :
+          <h1 className="page-header__title">Viewing all <span>{visibleExpensesCount}</span> expenses, totalling <span className="rwd-line">{formatAmount(expensesTotal)}</span></h1> :
         noVisibleExpenses ? 
           <h1 className="page-header__title">Viewing no expenses ouf of {totalExpensesCount} expenses.</h1> :
-          <h1 className="page-header__title">Viewing <span>{visibleExpensesCount}</span> ouf of {totalExpensesCount} expenses, totalling <span>{formatAmount(expensesTotal)}</span></h1>
+          <h1 className="page-header__title">Viewing <span>{visibleExpensesCount}</span> ouf of {totalExpensesCount} expenses, totalling <span className="rwd-line">{formatAmount(expensesTotal)}</span></h1>
         }
         <div className="page-header__actions">
           <Link className="button" to="/create">Add Expense</Link>
