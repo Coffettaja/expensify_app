@@ -49,6 +49,30 @@
     margin-top: 0
     padding-left: $s-size
 
+.list-item__note
+  position: absolute
+  width: 100%
+  display: block
+  margin-top: -3px
+  background: $off-white
+  padding: 1.5rem 2rem
+  border: 1px solid darken($off-white, 7%)
+  border-top: none
+  border-bottom: 2px solid darken($off-white, 15%)
+  -webkit-transition: opacity 0.5s ease-in
+  transition: opacity 0.5s ease-in
+  z-index: 1
+
+  p
+    margin: 0
+
+.list-item__note--invisible
+  opacity: 0
+
+.list-item__note--hidden
+  // opacity: 0
+  display: none
+
 button.DateRangePickerInput__clear-dates
   margin: 0
   @media (min-width: $desktop-breakpoint)

@@ -82,10 +82,10 @@ export default class ExpenseForm extends React.Component {
   
     if (!descriptionError && !amountError) {
       this.props.onSubmit({
-        description: this.state.description,
+        description: this.state.description.trim(),
         amount: amountFloat, 
         createdAt: this.state.createdAt.valueOf(), // Get the timestamp of the moment object
-        note: this.state.note,
+        note: this.state.note.trim(),
       })
     }
   }
